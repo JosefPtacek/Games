@@ -27,12 +27,17 @@ gameLoop();
  
 // kreslení
 function drawStuff() {
-    kontext.fillStyle = "white"
-    kontext.fillRect(0, 0, canvas.width, canvas.height);
+    // pozadí
+    rectangel("white", 0, 0, canvas.width, canvas.height);
 
-    kontext.fillStyle = "black";
-    kontext.fillRect(snakePosX, snakePosY, snakeSize, snakeSize);
+    // had
+    rectangel("black", snakePosX, snakePosY, snakeSize, snakeSize);
 };
+
+function rectangel(color, positionX, positionY, width, height) {
+    kontext.fillStyle = color;
+    kontext.fillRect(positionX, positionY, width, height);
+}
 
 // pohyb
 function moveStuff() {
@@ -40,9 +45,19 @@ function moveStuff() {
     snakePosY += snakeSpeed * velocityPosY;
 
     // kolize stěny s hadem
+    if(snakePosY < 0) {
+        snakePosY = canvas.height;
+    }
+    if(snakePosY > canvas.height) {
+        snakePosY = 0;
+    }
+    if(snakePosX < 0) {
+        snakePosX = canvas.width;
+    }
     if(snakePosX > canvas.width) {
         snakePosX = 0;
     }
+    
 };
 
 // pohyb klávesnicí
