@@ -30,6 +30,9 @@ function drawStuff() {
     // pozadí
     rectangel("white", 0, 0, canvas.width, canvas.height);
 
+    // jídlo 
+    rectangel("blue", 250, 250, snakeSize, snakeSize);
+
     // had
     rectangel("black", snakePosX, snakePosY, snakeSize, snakeSize);
 };
