@@ -9,15 +9,28 @@ var snakeSpeed = 50;
 var fsp = 8;
 
 function gameLoop() {
+    drawStuff();
+    moveStuff();
+    
+    setTimeout(gameLoop, 1000/fsp);
+}
+
+gameLoop();
+ 
+// kreslení
+function drawStuff() {
     kontext.fillStyle = "white"
     kontext.fillRect(0, 0, canvas.width, canvas.height);
 
     kontext.fillStyle = "black";
     kontext.fillRect(snakePosX, snakePosY, snakeSize, snakeSize);
+};
 
+// pohyb
+function moveStuff() {
     snakePosX += snakeSpeed;
 
-    setTimeout(gameLoop, 1000/fsp);
-}
-
-gameLoop();
+    if(snakePosX > canvas.width) {
+        snakePosX = 0;
+    }
+};
