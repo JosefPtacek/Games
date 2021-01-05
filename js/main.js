@@ -15,6 +15,9 @@ var fsp = 8;
 var velocityPosX = 1; 
 var velocityPosY = 0;
 
+var foodPosX = 250;
+var foodPosY = 250;
+
 // spuštění hry
 function gameLoop() {
     drawStuff();
@@ -28,14 +31,24 @@ gameLoop();
 // kreslení
 function drawStuff() {
     // pozadí
-    rectangel("white", 0, 0, canvas.width, canvas.height);
+    rectangel("gold", 0, 0, canvas.width, canvas.height);
+
+    // kachličky
+    function kachlicky() {
+        for(var i = 0; i < canvas.width / snakeSize; i++) 
+            for(var j = 0; j < canvas.height / snakeSize; j++) {
+            rectangel("white", snakeSize * i, snakeSize * j, snakeSize - 1, snakeSize - 1);
+        } 
+    }
+    
+    kachlicky();
 
     // jídlo 
-    rectangel("blue", 250, 250, snakeSize, snakeSize);
+    rectangel("blue", foodPosX, foodPosY, snakeSize, snakeSize);
 
     // had
     rectangel("black", snakePosX, snakePosY, snakeSize, snakeSize);
-};
+}
 
 function rectangel(color, positionX, positionY, width, height) {
     kontext.fillStyle = color;
