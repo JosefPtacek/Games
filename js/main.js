@@ -150,5 +150,9 @@ function keyPush(event) {
                 velocityPosY = 0;
             }
             break;
+            default:
+                // znovuspuštění hry
+                if (! hraJeSpustena) location.reload();
+                break;
     }
 }
