@@ -23,12 +23,16 @@ var delkaTela = 3;
 
 var score = 0;
 
+var hraJeSpustena = true;
+
 // spuštění hry
 function gameLoop() {
-    drawStuff();
-    moveStuff();
+    if(hraJeSpustena) {
+        drawStuff();
+        moveStuff();
     
-    setTimeout(gameLoop, 1000/fsp);
+        setTimeout(gameLoop, 1000/fsp);
+    }  
 }
 
 gameLoop();
@@ -104,16 +108,20 @@ function moveStuff() {
         snakePosX = canvas.width;
     }
 
-    // kolize hlavy hada s tělem hada
+    // kolize hlavy hada s tělem hada => konec hry
     teloHada.forEach(castiHada => {
         if(snakePosX === castiHada.x && snakePosY === castiHada.y) {
-            alert("game over");
+            konecHry();
         }
     });
 
     // tělo hada
     teloHada.push({x: snakePosX, y: snakePosY});
 };
+
+function konecHry() {
+    hraJeSpustena = false;
+}
 
 // pohyb klávesnicí
 function keyPush(event) {
