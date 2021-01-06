@@ -15,8 +15,8 @@ var fsp = 8;
 var velocityPosX = 1; 
 var velocityPosY = 0;
 
-var foodPosX = 250;
-var foodPosY = 250;
+var foodPosX
+var foodPosY
 
 // spuštění hry
 function gameLoop() {
@@ -34,25 +34,39 @@ function drawStuff() {
     rectangel("gold", 0, 0, canvas.width, canvas.height);
 
     // kachličky
-    function kachlicky() {
-        for(var i = 0; i < canvas.width / snakeSize; i++) 
-            for(var j = 0; j < canvas.height / snakeSize; j++) {
-            rectangel("white", snakeSize * i, snakeSize * j, snakeSize - 1, snakeSize - 1);
-        } 
-    }
-    
     kachlicky();
 
     // jídlo 
     rectangel("blue", foodPosX, foodPosY, snakeSize, snakeSize);
 
+    if(snakePosX === foodPosX && snakePosY === foodPosY) {
+        resetFood();
+    }
+
     // had
     rectangel("black", snakePosX, snakePosY, snakeSize, snakeSize);
 }
 
+// funkce náležící ke kreslení
 function rectangel(color, positionX, positionY, width, height) {
     kontext.fillStyle = color;
     kontext.fillRect(positionX, positionY, width, height);
+}
+
+function resetFood() {
+    var nahodneCisloX = Math.floor(Math.random() * canvas.width / snakeSize);
+    var nahodneCisloY = Math.floor(Math.random() * canvas.width / snakeSize);
+    foodPosX = snakeSize * nahodneCisloX;
+    foodPosY = snakeSize * nahodneCisloY;
+}
+
+resetFood();
+
+function kachlicky() {
+    for(var i = 0; i < canvas.width / snakeSize; i++) 
+        for(var j = 0; j < canvas.height / snakeSize; j++) {
+        rectangel("white", snakeSize * i, snakeSize * j, snakeSize - 1, snakeSize - 1);
+    } 
 }
 
 // pohyb
@@ -61,19 +75,18 @@ function moveStuff() {
     snakePosY += snakeSpeed * velocityPosY;
 
     // kolize stěny s hadem
+    if(snakePosY > canvas.height - snakeSize) {
+        snakePosY = 0;
+    }
     if(snakePosY < 0) {
         snakePosY = canvas.height;
     }
-    if(snakePosY > canvas.height) {
-        snakePosY = 0;
+    if(snakePosX > canvas.width - snakeSize) {
+        snakePosX = 0;
     }
     if(snakePosX < 0) {
         snakePosX = canvas.width;
     }
-    if(snakePosX > canvas.width) {
-        snakePosX = 0;
-    }
-    
 };
 
 // pohyb klávesnicí
