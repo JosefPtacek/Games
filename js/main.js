@@ -1,6 +1,6 @@
 // událost
 document.addEventListener("keydown", keyPush);
-// canvas
+// canvas a score
 var canvas = document.querySelector("canvas");
 var kontext = canvas.getContext("2d");
 
@@ -20,6 +20,8 @@ var foodPosY
 
 var teloHada = [];
 var delkaTela = 3;
+
+var score = 0;
 
 // spuštění hry
 function gameLoop() {
@@ -45,6 +47,8 @@ function drawStuff() {
     if(snakePosX === foodPosX && snakePosY === foodPosY) {
         resetFood();
         delkaTela++;
+        score++
+        document.querySelector("h1").innerHTML = score;
     }
 
     // tělo hada
