@@ -18,6 +18,8 @@ var velocityPosY = 0;
 var foodPosX
 var foodPosY
 
+var teloHada = [];
+
 // spuštění hry
 function gameLoop() {
     drawStuff();
@@ -42,6 +44,14 @@ function drawStuff() {
     if(snakePosX === foodPosX && snakePosY === foodPosY) {
         resetFood();
     }
+
+    // tělo hada
+    teloHada.forEach(castHada => {
+        rectangel("#555", castHada.x, castHada.y, snakeSize, snakeSize);
+    });
+
+    // zapomenout na části těla hada
+    teloHada = teloHada.slice(-1 * 3);
 
     // had
     rectangel("black", snakePosX, snakePosY, snakeSize, snakeSize);
@@ -87,6 +97,9 @@ function moveStuff() {
     if(snakePosX < 0) {
         snakePosX = canvas.width;
     }
+
+    // tělo hada
+    teloHada.push({x: snakePosX, y: snakePosY});
 };
 
 // pohyb klávesnicí
