@@ -104,6 +104,13 @@ function moveStuff() {
         snakePosX = canvas.width;
     }
 
+    // kolize hlavy hada s tělem hada
+    teloHada.forEach(castiHada => {
+        if(snakePosX === castiHada.x && snakePosY === castiHada.y) {
+            alert("game over");
+        }
+    });
+
     // tělo hada
     teloHada.push({x: snakePosX, y: snakePosY});
 };
