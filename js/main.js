@@ -19,6 +19,7 @@ var foodPosX
 var foodPosY
 
 var teloHada = [];
+var delkaTela = 3;
 
 // spuštění hry
 function gameLoop() {
@@ -43,6 +44,7 @@ function drawStuff() {
 
     if(snakePosX === foodPosX && snakePosY === foodPosY) {
         resetFood();
+        delkaTela++;
     }
 
     // tělo hada
@@ -51,7 +53,7 @@ function drawStuff() {
     });
 
     // zapomenout na části těla hada
-    teloHada = teloHada.slice(-1 * 3);
+    teloHada = teloHada.slice(-1 * delkaTela);
 
     // had
     rectangel("black", snakePosX, snakePosY, snakeSize, snakeSize);
