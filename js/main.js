@@ -55,6 +55,7 @@ function drawStuff() {
         document.querySelector("h1").innerHTML = score;
     }
 
+<<<<<<< HEAD
     teloHada.forEach(castiHada => {
         if(foodPosX === castiHada.x && foodPosY === castiHada.y) {
             resetFood();
@@ -65,12 +66,18 @@ function drawStuff() {
     teloHada.forEach(castHada => {
         /*rectangel("#555", castHada.x, castHada.y, snakeSize, snakeSize);*/
         ring(castHada.x + snakeSize / 2, castHada.y + snakeSize /2, snakeSize / 2, "red");
+=======
+    // tělo hada
+    teloHada.forEach(castHada => {
+        rectangel("#555", castHada.x, castHada.y, snakeSize, snakeSize);
+>>>>>>> b26d61fb7b1f8e971ec43baaaeb90b4c8efc2c3e
     });
 
     // zapomenout na části těla hada
     teloHada = teloHada.slice(-1 * delkaTela);
 
     // had
+<<<<<<< HEAD
     /*
     rectangel("black", snakePosX, snakePosY, snakeSize, snakeSize);
     */
@@ -79,11 +86,18 @@ function drawStuff() {
 
 // funkce náležící ke kreslení
 
+=======
+    rectangel("black", snakePosX, snakePosY, snakeSize, snakeSize);
+}
+
+// funkce náležící ke kreslení
+>>>>>>> b26d61fb7b1f8e971ec43baaaeb90b4c8efc2c3e
 function rectangel(color, positionX, positionY, width, height) {
     kontext.fillStyle = color;
     kontext.fillRect(positionX, positionY, width, height);
 }
 
+<<<<<<< HEAD
 function ring(positionX, positionY, snakeSize, color) {
     kontext.beginPath();
     kontext.arc(positionX, positionY, snakeSize, 0, 2 * Math.PI, false);
@@ -108,6 +122,8 @@ function ring(positionX, positionY, snakeSize, color) {
 */
 
 
+=======
+>>>>>>> b26d61fb7b1f8e971ec43baaaeb90b4c8efc2c3e
 function resetFood() {
     var nahodneCisloX = Math.floor(Math.random() * canvas.width / snakeSize);
     var nahodneCisloY = Math.floor(Math.random() * canvas.width / snakeSize);
